@@ -21,7 +21,7 @@
     </header>
     <!-- Background video -->
     <div id="video-bg">
-      <!-- <video
+      <video
         id="v0"
         tabindex="0"
         autobuffer
@@ -33,14 +33,7 @@
         <source src="output.mp4" type="video/mp4" />
         <source src="output.webm" type="video/webm" />
         <source src="output.ogv" type="video/ogg" />
-      </video> -->
-      <!-- <img id="frame" src="frames/frame_0001.png" alt="Video Frame" loading="lazy"/> -->
-      <img
-        id="frame"
-        data-src="frames/frame_0001.webp"
-        alt="Video Frame"
-        type="image/webp"
-      />
+      </video>
     </div>
 
     <!-- Hero -->
@@ -129,44 +122,8 @@
 
     <!-- Scroll‑height spacer for video scrub -->
     <div id="set-height"></div>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const totalFrames = 150; // Adjust this to match your total number of frames
-        const frameElement = document.getElementById("frame");
 
-        if (frameElement) {
-          window.addEventListener("scroll", () => {
-            const scrollTop =
-              window.pageYOffset || document.documentElement.scrollTop;
-            const maxScroll =
-              document.documentElement.scrollHeight - window.innerHeight;
-            const scrollFraction = scrollTop / maxScroll;
-            const frameIndex = Math.min(
-              totalFrames - 1,
-              Math.floor(scrollFraction * totalFrames)
-            );
-
-            const frameNumber = String(frameIndex + 1).padStart(4, "0");
-            frameElement.src = `frames/frame_${frameNumber}.png`;
-          });
-        }
-      });
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            observer.unobserve(img);
-          }
-        });
-      });
-
-      document.querySelectorAll("img[data-src]").forEach(img => {
-        observer.observe(img);
-      });
-    </script>
-
-    <!-- <script src="sticky.js"></script>
+    <script src="sticky.js"></script>
     <script>
       enterView({
         selector: "section",
@@ -215,6 +172,6 @@
         requestAnimationFrame(scrollPlay);
       }
       requestAnimationFrame(scrollPlay);
-    </script> -->
+    </script>
   </body>
 </html>
