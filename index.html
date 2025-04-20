@@ -30,9 +30,9 @@
         preload="metadata"
         playsinline
       >
-        <source src="output.mp4" type="video/mp4" />
-        <source src="output.webm" type="video/webm" />
-        <source src="output.ogv" type="video/ogg" />
+        <source src="output_mobile.mp4" type="video/mp4" />
+        <source src="output_mobile.webm" type="video/webm" />
+        <source src="output_mobile.ogv" type="video/ogg" />
       </video>
     </div>
 
@@ -166,10 +166,6 @@
           header.classList.add("visible");
         }
       }
-
-      document.getElementById("video").addEventListener("click", function () {
-        this.play();
-      });
 
       // scroll scrubbing
       function scrollPlay() {
