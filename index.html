@@ -34,7 +34,7 @@
         <source src="output.webm" type="video/webm" />
         <source src="output.ogv" type="video/ogg" />
       </video> -->
-      <img id="frame" src="frames/frame_0001.jpg" alt="Video Frame" />
+      <img id="frame" src="frames/frame_0001.png" alt="Video Frame" />
     </div>
 
     <!-- Hero -->
@@ -141,9 +141,22 @@
             );
 
             const frameNumber = String(frameIndex + 1).padStart(4, "0");
-            frameElement.src = `frames/frame_${frameNumber}.jpg`;
+            frameElement.src = `frames/frame_${frameNumber}.png`;
           });
         }
+      });
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll("img[data-src]").forEach(img => {
+        observer.observe(img);
       });
     </script>
 
