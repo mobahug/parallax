@@ -34,7 +34,7 @@
         <source src="output.webm" type="video/webm" />
         <source src="output.ogv" type="video/ogg" />
       </video> -->
-      <img id="frame" src="frames/frame_0001.png" alt="Video Frame" />
+      <img id="frame" src="frames/frame_0001.png" alt="Video Frame" loading="lazy"/>
     </div>
 
     <!-- Hero -->
@@ -125,7 +125,7 @@
     <div id="set-height"></div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const totalFrames = 300; // Adjust this to match your total number of frames
+        const totalFrames = 150; // Adjust this to match your total number of frames
         const frameElement = document.getElementById("frame");
 
         if (frameElement) {
