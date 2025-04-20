@@ -22,7 +22,7 @@
     </header>
 
     <!-- Background Video -->
-    <!-- <div id="video-bg">
+    <div id="video-bg">
       <video
         id="v0"
         muted
@@ -33,9 +33,6 @@
       >
         <source src="output.mp4" type="video/mp4" />
       </video>
-    </div> -->
-    <div id="video-bg">
-      <canvas id="v0"></canvas>
     </div>
 
     <!-- Hero -->
@@ -124,7 +121,7 @@
     <!-- Scroll-height spacer for video scrub -->
     <div id="set-height"></div>
 
-    <!-- <script src="sticky.js"></script>
+    <script src="sticky.js"></script>
     <script>
       enterView({
         selector: "section",
@@ -173,70 +170,6 @@
         requestAnimationFrame(scrollPlay);
       }
       requestAnimationFrame(scrollPlay);
-    </script> -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById("v0");
-        const context = canvas.getContext("2d");
-
-        const video = document.createElement("video");
-        video.src = "./output.mp4"; // Make sure it's in the correct folder
-        video.muted = true;
-        video.playsInline = true;
-        video.crossOrigin = "anonymous"; // Optional, but good practice
-
-        let duration = 0;
-        let scrollTarget = 0;
-        let delay = 0;
-        let isReady = false;
-
-        // Resize canvas to viewport size
-        function resizeCanvas() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
-
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
-
-        // Get duration and start render loop once ready
-        video.addEventListener("loadedmetadata", () => {
-          duration = video.duration;
-          isReady = true;
-          render();
-        });
-
-        // Calculate scroll-based target time
-        window.addEventListener("scroll", () => {
-          if (!isReady) return;
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
-          const maxScroll =
-            document.documentElement.scrollHeight - window.innerHeight;
-          const scrollFraction = scrollTop / maxScroll;
-          scrollTarget = scrollFraction * duration;
-        });
-
-        // Smooth render loop with interpolation
-        function render() {
-          if (!isReady) return;
-
-          // Ease into the target scroll time
-          delay += (scrollTarget - delay) * 0.1;
-          video.currentTime = delay;
-
-          // Draw the frame once it's seeked
-          video.addEventListener(
-            "seeked",
-            () => {
-              context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            },
-            { once: true }
-          );
-
-          requestAnimationFrame(render);
-        }
-      });
     </script>
   </body>
 </html>
