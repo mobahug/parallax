@@ -31,6 +31,8 @@
         playsinline
       >
         <source src="output.mp4" type="video/mp4" />
+        <source src="output.webm" type="video/webm" />
+        <source src="output.ogv" type="video/ogg" />
       </video>
     </div>
 
@@ -128,7 +130,7 @@
         enter: el => el.querySelector(".content").classList.add("entered"),
       });
 
-      const playbackConst = 1500;
+      const playbackConst = 800;
       const setHeight = document.getElementById("set-height");
       const vid = document.getElementById("v0");
 
@@ -165,12 +167,9 @@
         }
       }
 
-      function unlockVideo() {
-        vid.play().catch(() => {});
-        window.removeEventListener("touchstart", unlockVideo);
-      }
-
-      window.addEventListener("touchstart", unlockVideo, { once: true });
+      document.getElementById("video").addEventListener("click", function () {
+        this.play();
+      });
 
       // scroll scrubbing
       function scrollPlay() {
