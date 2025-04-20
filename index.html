@@ -1,16 +1,17 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Your Name • Portfolio 2025</title>
+    <meta name="theme-color" content="#1C2A12" />
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <!-- Background video container -->
+    <!-- Background video -->
     <div id="video-bg">
-      <video id="v0" tabindex="0", autobuffer preload>
+      <video id="v0" tabindex="0" , autobuffer preload>
         <source
           src="public/output.mp4"
           type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
@@ -18,74 +19,114 @@
       </video>
     </div>
 
-    <!-- Sections that trigger animation and control scroll -->
-    <section class="container">
+    <!-- Hero -->
+    <section id="hero">
       <div class="content">
-        <h1>Scroll to Begin</h1>
-        <p>Start it like this…</p>
+        <h1>Hello, I’m <em>Your Name</em></h1>
+        <p>
+          Front‑End Developer &amp; UX Enthusiast crafting immersive web
+          experiences.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
       </div>
     </section>
 
-    <section class="container">
+    <!-- About -->
+    <section id="about">
       <div class="content">
-        <h1>Step 1</h1>
-        <p>Start it like this…</p>
+        <h1>About Me</h1>
+        <p>
+          I’m a self‑taught developer who loves blending creativity with code.
+          When I’m not building websites, I’m exploring nature trails or
+          experimenting with new design tools.
+        </p>
+        <ul>
+          <li>📍 Based in Your City</li>
+          <li>🎓 B.Sc. in Computer Science</li>
+          <li>💼 3+ years freelancing globally</li>
+        </ul>
       </div>
     </section>
 
-    <section class="container">
+    <!-- Projects -->
+    <section id="projects">
       <div class="content">
-        <h1>Step 2</h1>
-        <p>Start it like this…</p>
+        <h1>Selected Projects</h1>
+        <ul>
+          <li>
+            <a href="https://project1.example.com" target="_blank"
+              >Project One</a
+            >
+            — A responsive portfolio with smooth scroll animations.
+          </li>
+          <li>
+            <a href="https://project2.example.com" target="_blank"
+              >Project Two</a
+            >
+            — Interactive data viz dashboard built in D3.js.
+          </li>
+          <li>
+            <a href="https://project3.example.com" target="_blank"
+              >Project Three</a
+            >
+            — E‑commerce prototype with custom UI components.
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section class="container">
+    <!-- Skills -->
+    <section id="skills">
       <div class="content">
-        <h1>Step 3</h1>
-        <p>Start it like this…</p>
+        <h1>Skills &amp; Tools</h1>
+        <ul>
+          <li>HTML5, CSS3 (Flexbox, Grid, Animations)</li>
+          <li>JavaScript (ES6+, React, D3)</li>
+          <li>Version Control: Git &amp; GitHub</li>
+          <li>Design: Figma, Sketch, Adobe XD</li>
+        </ul>
       </div>
     </section>
 
-    <section class="container">
+    <!-- Contact -->
+    <section id="contact">
       <div class="content">
-        <h1>Step 4</h1>
-        <p>Start it like this…</p>
+        <h1>Let’s Connect</h1>
+        <p>Have a project in mind or just want to say hi? I’m all ears.</p>
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+        <a
+          href="https://linkedin.com/in/yourprofile"
+          class="btn"
+          target="_blank"
+          >LinkedIn</a
+        >
       </div>
     </section>
 
-    <!-- Invisible div to expand page for scrolling -->
+    <!-- Scroll‑height spacer for video scrub -->
     <div id="set-height"></div>
 
-    <!-- Scripts -->
     <script src="sticky.js"></script>
     <script>
-      // Add 'entered' class when sections come into view
       enterView({
         selector: "section",
-        enter: function (el) {
-          el.classList.add("entered");
-        },
+        enter: el => el.querySelector(".content").classList.add("entered"),
       });
 
-      // Scroll‑controlled video playback
-      var playbackConst = 1000; // lower = faster scrub
-      var setHeight = document.getElementById("set-height");
-      var vid = document.getElementById("v0");
+      const playbackConst = 1500;
+      const setHeight = document.getElementById("set-height");
+      const vid = document.getElementById("v0");
 
-      // Set scrollable height based on video duration
-      vid.addEventListener("loadedmetadata", function () {
+      vid.addEventListener("loadedmetadata", () => {
         setHeight.style.height =
           Math.floor(vid.duration) * playbackConst + "px";
       });
 
-      // On each animation frame, update video.currentTime based on scroll
       function scrollPlay() {
-        var frameNumber = window.pageYOffset / playbackConst;
-        vid.currentTime = frameNumber;
-        window.requestAnimationFrame(scrollPlay);
+        vid.currentTime = window.pageYOffset / playbackConst;
+        requestAnimationFrame(scrollPlay);
       }
-      window.requestAnimationFrame(scrollPlay);
+      requestAnimationFrame(scrollPlay);
     </script>
   </body>
 </html>

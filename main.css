@@ -1,107 +1,190 @@
 /* main.css */
 
-/* Base page styles */
+/* ──────────────────────────────────────────────────────────────────────────
+   1) Design System Variables
+   ────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* colors */
+  --clr-deep: #1c2a12;
+  --clr-forest: #3a5223;
+  --clr-moss: #728d40;
+  --clr-gold: #c4a95a;
+  --clr-light: #f0e8c1;
+  --clr-text: #222;
+
+  /* spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+
+  /* typography */
+  --fs-hero: clamp(2.5rem, 6vw, 4rem);
+  --fs-title: clamp(2rem, 5vw, 3rem);
+  --fs-body: clamp(1rem, 2.5vw, 1.25rem);
+
+  /* border radius */
+  --radii-lg: 1.5rem;
+  --radii-pill: 999px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+     2) Global & Scroll‐Snap
+     ────────────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
-  padding: 3em;
-  background-color: #c6d7de;
-  font-family: "Montserrat", sans-serif;
-  overflow-x: hidden;
-  position: relative;
+  padding: 0;
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  font-family: "Montserrat", system-ui, sans-serif;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--clr-text);
 }
 
-/* Fullscreen fixed container for the background video */
+body {
+  overflow-x: hidden;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+     3) Background Video
+     ────────────────────────────────────────────────────────────────────────── */
 #video-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* full viewport width */
-  height: 100vh; /* full viewport height */
-  z-index: -1; /* behind all other content */
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
 }
-
-/* Make the video fill and cover the container */
+#video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.6)
+  );
+}
 #video-bg video {
-  width: 100%; /* fill width */
-  height: 100%; /* fill height */
-  object-fit: cover; /* scale & crop to keep aspect ratio */
-  object-position: center center; /* center the video frame */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
-/* Placeholder element to set scrollable height */
-#set-height {
-  display: block;
-}
-
-/* Section styling */
+/* ──────────────────────────────────────────────────────────────────────────
+     4) Sections & Cards
+     ────────────────────────────────────────────────────────────────────────── */
 section {
-  z-index: 1;
+  min-height: 100vh;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-sm);
+}
+
+.content {
+  width: min(90vw, 600px);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: var(--radii-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.content:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+     5) Typography & Links
+     ────────────────────────────────────────────────────────────────────────── */
+h1 {
+  font-size: var(--fs-hero);
+  margin: 0 0 var(--space-sm);
+  line-height: 1.1;
+}
+p,
+ul,
+li,
+a {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+ul {
+  margin: var(--space-sm) 0;
+  padding-left: 1.25em;
+}
+a {
+  color: var(--clr-forest);
+  text-decoration: none;
   position: relative;
 }
-.content {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 33.3%;
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
   width: 100%;
+  height: 2px;
+  background: var(--clr-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+a:hover::after {
+  transform: scaleX(1);
 }
 
-/* Headings & paragraphs */
-h1 {
-  font-size: 3em;
-  background: #fff;
+/* ──────────────────────────────────────────────────────────────────────────
+     6) Buttons / CTAs
+     ────────────────────────────────────────────────────────────────────────── */
+.btn {
   display: inline-block;
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--clr-forest);
+  color: #fff;
+  border-radius: var(--radii-pill);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-p {
-  font-size: 1.5em;
-}
-
-/* Heights for each section (to match your video length) */
-section:nth-of-type(1) {
-  height: 1200px;
-}
-section:nth-of-type(2) {
-  height: 1200px;
-}
-section:nth-of-type(3) {
-  height: 1200px;
-}
-section:nth-of-type(4) {
-  height: 1000px;
-}
-section:nth-of-type(5) {
-  height: 4000px;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Text entrance animation */
-.entered {
-  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-}
-@-webkit-keyframes text-focus-in {
-  0% {
-    -webkit-filter: blur(12px);
-    filter: blur(12px);
-    opacity: 0;
+/* ──────────────────────────────────────────────────────────────────────────
+     7) Responsive Fix (edge‑to‑edge cards on phone)
+     ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
   }
-  100% {
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-    opacity: 1;
+  section {
+    padding: var(--space-md) 0;
   }
-}
-@keyframes text-focus-in {
-  0% {
-    -webkit-filter: blur(12px);
-    filter: blur(12px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-    opacity: 1;
+  .content {
+    width: 100vw !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: var(--space-sm) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    transform: none !important;
   }
 }
