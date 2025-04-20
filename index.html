@@ -21,7 +21,16 @@
     </header>
     <!-- Background video -->
     <div id="video-bg">
-      <video id="v0" tabindex="0" , autobuffer preload="auto" webkit-playsinline preload="metadata" playsinline>
+      <video
+        id="v0"
+        tabindex="0"
+        ,
+        autobuffer
+        preload="auto"
+        webkit-playsinline
+        preload="metadata"
+        playsinline
+      >
         <source
           src="public/output.mp4"
           type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
@@ -159,6 +168,27 @@
           header.classList.add("visible");
         }
       }
+
+      // ensure metadata is loaded
+      vid.preload = "metadata";
+      vid.addEventListener("loadedmetadata", () => {
+        setHeight.style.height =
+          Math.floor(vid.duration) * playbackConst + "px";
+      });
+
+      // one‐time “unlock” on first touch
+      function unlockVideo() {
+        vid.play().catch(() => {});
+        window.removeEventListener("touchstart", unlockVideo);
+      }
+      window.addEventListener("touchstart", unlockVideo, { once: true });
+
+      // scroll scrubbing
+      function scrollPlay() {
+        vid.currentTime = window.pageYOffset / playbackConst;
+        requestAnimationFrame(scrollPlay);
+      }
+      requestAnimationFrame(scrollPlay);
     </script>
   </body>
 </html>
