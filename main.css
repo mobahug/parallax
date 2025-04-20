@@ -1,8 +1,8 @@
 /* main.css */
 
 /* ──────────────────────────────────────────────────────────────────────────
-   1) Design System Variables
-   ────────────────────────────────────────────────────────────────────────── */
+    1) Design System Variables
+────────────────────────────────────────────────────────────────────────── */
 :root {
   /* colors */
   --clr-deep: #1c2a12;
@@ -29,8 +29,8 @@
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     2) Global & Scroll‐Snap
-     ────────────────────────────────────────────────────────────────────────── */
+    2) Global & Scroll‐Snap
+────────────────────────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -54,8 +54,8 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     3) Background Video
-     ────────────────────────────────────────────────────────────────────────── */
+    3) Background Video
+────────────────────────────────────────────────────────────────────────── */
 #video-bg {
   position: fixed;
   inset: 0;
@@ -80,8 +80,8 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     4) Sections & Cards
-     ────────────────────────────────────────────────────────────────────────── */
+    4) Sections & Cards
+────────────────────────────────────────────────────────────────────────── */
 section {
   min-height: 100vh;
   scroll-snap-align: center;
@@ -108,8 +108,8 @@ section {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     5) Typography & Links
-     ────────────────────────────────────────────────────────────────────────── */
+    5) Typography & Links
+────────────────────────────────────────────────────────────────────────── */
 h1 {
   font-size: var(--fs-hero);
   margin: 0 0 var(--space-sm);
@@ -148,8 +148,8 @@ a:hover::after {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     6) Buttons / CTAs
-     ────────────────────────────────────────────────────────────────────────── */
+    6) Buttons / CTAs
+────────────────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
@@ -167,8 +167,61 @@ a:hover::after {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-     7) Responsive Fix (edge‑to‑edge cards on phone)
-     ────────────────────────────────────────────────────────────────────────── */
+    Roll‑Down Sticky Header
+────────────────────────────────────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  z-index: 100;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.site-header.visible {
+  transform: translateY(0);
+}
+
+/* Nav styling */
+.nav {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--clr-deep);
+  padding: 0.5rem 0.75rem;
+  position: relative;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background: var(--clr-gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+    7) Responsive Fix (edge‑to‑edge cards on phone)
+────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   body {
     padding: 0;

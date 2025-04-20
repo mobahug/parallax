@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
+    <!-- Header gets injected here -->
+    <header class="site-header">
+      <nav class="nav">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
     <!-- Background video -->
     <div id="video-bg">
       <video id="v0" tabindex="0" , autobuffer preload>
@@ -127,6 +137,28 @@
         requestAnimationFrame(scrollPlay);
       }
       requestAnimationFrame(scrollPlay);
+      // grab references
+      const header = document.querySelector(".site-header");
+      const hero = document.getElementById("hero");
+
+      if (header && hero) {
+        const headerHeight = header.offsetHeight;
+        const heroHeight = hero.offsetHeight;
+
+        window.addEventListener("scroll", () => {
+          // if we've scrolled past heroHeight - headerHeight, show the header
+          if (window.scrollY > heroHeight - headerHeight) {
+            header.classList.add("visible");
+          } else {
+            header.classList.remove("visible");
+          }
+        });
+
+        // also fire once on load in case refresh mid‑page
+        if (window.scrollY > heroHeight - headerHeight) {
+          header.classList.add("visible");
+        }
+      }
     </script>
   </body>
 </html>
