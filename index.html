@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Scroll‑Driven Sequence</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #192f3b;
+        height: 100%;
+        overflow: hidden;
+      }
+      #intro-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2rem;
+        opacity: 1;
+        transition: opacity 0.6s ease-out;
+        pointer-events: none;
+      }
+      #image-container {
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      #zoomable {
+        max-width: 100%;
+        max-height: 100%;
+        opacity: 0;
+        transform-origin: center center;
+        transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        cursor: zoom-in;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="intro-text">Hi I am developer</div>
+    <div id="image-container">
+      <img id="zoomable" src="" alt="frame" />
+    </div>
+
+    <script>
+      const images = [
+        "public/images/frame1.png",
+        "public/images/frame2.png",
+        "public/images/frame3.png",
+      ];
+
+      const intro = document.getElementById("intro-text");
+      const container = document.getElementById("image-container");
+      const img = document.getElementById("zoomable");
+
+      let currentFrame = -1; // -1 = intro
+      let currentZoom = 1;
+      let readyNext = false;
+      const minZoom = 1;
+      const maxZoom = 3;
+      const stepSize = 0.01;
+
+      window.addEventListener(
+        "wheel",
+        e => {
+          e.preventDefault();
+          const dir = e.deltaY < 0 ? 1 : -1;
+
+          if (currentFrame === -1) {
+            if (dir > 0) startSequence();
+            return;
+          }
+          if (readyNext && dir > 0) {
+            showNextFrame();
+            return;
+          }
+          zoomImage(dir);
+        },
+        { passive: false }
+      );
+
+      function startSequence() {
+        intro.style.opacity = 0;
+        setTimeout(() => (intro.style.display = "none"), 600);
+        showNextFrame();
+      }
+
+      function showNextFrame() {
+        if (currentFrame < images.length - 1) {
+          currentFrame++;
+          updateImageForFrame(currentFrame, { atMinZoom: true });
+        }
+      }
+
+      function showPrevFrame() {
+        if (currentFrame > 0) {
+          currentFrame--;
+          updateImageForFrame(currentFrame, { atMaxZoom: true });
+        } else {
+          showIntro();
+        }
+      }
+
+      function showIntro() {
+        container.style.display = "none";
+        currentFrame = -1;
+        currentZoom = minZoom;
+        img.style.transform = `scale(${minZoom})`;
+        img.style.opacity = 0;
+        intro.style.display = "flex";
+        requestAnimationFrame(() => (intro.style.opacity = 1));
+      }
+
+      function updateImageForFrame(
+        frameIndex,
+        { atMinZoom = false, atMaxZoom = false } = {}
+      ) {
+        img.src = images[frameIndex];
+        container.style.display = "flex";
+
+        // immediate reset
+        img.style.transition = "none";
+        currentZoom = atMaxZoom ? maxZoom : minZoom;
+        img.style.transform = `scale(${currentZoom})`;
+        img.style.opacity = 0.5;
+
+        requestAnimationFrame(() => {
+          img.style.transition =
+            "transform 0.1s ease-out, opacity 0.1s ease-out";
+        });
+        readyNext = false;
+      }
+
+      function zoomImage(direction) {
+        const newZoom = currentZoom + direction * stepSize;
+
+        if (newZoom > maxZoom) {
+          currentZoom = maxZoom;
+          img.style.transform = `scale(${maxZoom})`;
+          img.style.opacity = 0;
+          readyNext = true;
+          return;
+        }
+        if (newZoom < minZoom) {
+          showPrevFrame();
+          return;
+        }
+
+        currentZoom = newZoom;
+        img.style.transform = `scale(${currentZoom})`;
+        const mid = (minZoom + maxZoom) / 2;
+        let opacity =
+          currentZoom <= mid
+            ? (currentZoom - minZoom) / (mid - minZoom)
+            : (maxZoom - currentZoom) / (maxZoom - mid);
+        img.style.opacity = opacity;
+      }
+    </script>
+  </body>
+</html>
