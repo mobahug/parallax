@@ -21,7 +21,7 @@
     </header>
     <!-- Background video -->
     <div id="video-bg">
-      <video
+      <!-- <video
         id="v0"
         tabindex="0"
         autobuffer
@@ -33,7 +33,8 @@
         <source src="output.mp4" type="video/mp4" />
         <source src="output.webm" type="video/webm" />
         <source src="output.ogv" type="video/ogg" />
-      </video>
+      </video> -->
+      <img id="frame" src="frames/frame_0001.jpg" alt="Video Frame" />
     </div>
 
     <!-- Hero -->
@@ -122,8 +123,31 @@
 
     <!-- Scroll‑height spacer for video scrub -->
     <div id="set-height"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const totalFrames = 300; // Adjust this to match your total number of frames
+        const frameElement = document.getElementById("frame");
 
-    <script src="sticky.js"></script>
+        if (frameElement) {
+          window.addEventListener("scroll", () => {
+            const scrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+            const maxScroll =
+              document.documentElement.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollTop / maxScroll;
+            const frameIndex = Math.min(
+              totalFrames - 1,
+              Math.floor(scrollFraction * totalFrames)
+            );
+
+            const frameNumber = String(frameIndex + 1).padStart(4, "0");
+            frameElement.src = `frames/frame_${frameNumber}.jpg`;
+          });
+        }
+      });
+    </script>
+
+    <!-- <script src="sticky.js"></script>
     <script>
       enterView({
         selector: "section",
@@ -166,13 +190,12 @@
           header.classList.add("visible");
         }
       }
-
       // scroll scrubbing
       function scrollPlay() {
         vid.currentTime = window.pageYOffset / playbackConst;
         requestAnimationFrame(scrollPlay);
       }
       requestAnimationFrame(scrollPlay);
-    </script>
+    </script> -->
   </body>
 </html>
