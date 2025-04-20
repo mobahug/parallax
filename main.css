@@ -1,36 +1,52 @@
+/* main.css */
+
+/* Base page styles */
 body {
-  background-color: #c6d7de;
-  font-family: "Montserrat";
+  margin: 0;
   padding: 3em;
+  background-color: #c6d7de;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  position: relative;
 }
 
-#v0 {
+/* Fullscreen fixed container for the background video */
+#video-bg {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  max-width: 100%; /* never scale beyond natural width */
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw; /* full viewport width */
+  height: 100vh; /* full viewport height */
+  z-index: -1; /* behind all other content */
+  overflow: hidden;
 }
 
+/* Make the video fill and cover the container */
+#video-bg video {
+  width: 100%; /* fill width */
+  height: 100%; /* fill height */
+  object-fit: cover; /* scale & crop to keep aspect ratio */
+  object-position: center center; /* center the video frame */
+}
+
+/* Placeholder element to set scrollable height */
 #set-height {
   display: block;
 }
 
+/* Section styling */
 section {
   z-index: 1;
   position: relative;
 }
-
 .content {
   position: sticky;
   position: -webkit-sticky;
-  width: 100%;
   top: 33.3%;
+  width: 100%;
 }
 
+/* Headings & paragraphs */
 h1 {
   font-size: 3em;
   background: #fff;
@@ -43,6 +59,7 @@ p {
   font-size: 1.5em;
 }
 
+/* Heights for each section (to match your video length) */
 section:nth-of-type(1) {
   height: 1200px;
 }
@@ -59,11 +76,11 @@ section:nth-of-type(5) {
   height: 4000px;
 }
 
+/* Text entrance animation */
 .entered {
   -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
-
 @-webkit-keyframes text-focus-in {
   0% {
     -webkit-filter: blur(12px);
