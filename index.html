@@ -1,55 +1,97 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Your Name • Portfolio 2025</title>
-    <meta name="theme-color" content="#1C2A12" />
-    <link rel="stylesheet" href="main.css" />
-    <script src="https://unpkg.com/scrolly-video/dist/scrolly-video.min.js"></script>
+    <title>Your Name • Portfolio</title>
+
+    <style>
+      /* Reset & base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        font-family: "Segoe UI", sans-serif;
+        scroll-behavior: smooth;
+        background: #fff;
+      }
+
+      .scrolly-container {
+        height: 500vh; /* enough scroll space */
+        position: relative;
+      }
+
+      #scrolly-video {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0;
+      }
+
+      .text-block {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 10vh;
+      }
+
+      .text-block h1 {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .text-block p,
+      .text-block li,
+      .text-block a {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #222;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.75rem 1.5rem;
+        background: #3a5223;
+        color: white;
+        font-weight: bold;
+        border-radius: 50px;
+        text-decoration: none;
+      }
+
+      ul {
+        margin: 1rem 0;
+        padding-left: 1.25em;
+      }
+    </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="site-header">
-      <nav class="nav">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div class="scrolly-container">
+      <div id="scrolly-video"></div>
 
-    <!-- Background Video -->
-    <div id="video-bg">
-      <video
-        id="v0"
-        muted
-        preload="auto"
-        webkit-playsinline
-        preload="metadata"
-        playsinline
-      >
-        <source src="output.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <!-- Hero -->
-    <section id="hero">
-      <div class="content">
+      <!-- Hero -->
+      <div class="text-block" style="top: 20vh">
         <h1>Hello, I’m <em>Your Name</em></h1>
         <p>
-          Front‑End Developer &amp; UX Enthusiast crafting immersive web
+          Front‑End Developer & UX Enthusiast crafting immersive web
           experiences.
         </p>
         <a href="#projects" class="btn">View My Work</a>
       </div>
-    </section>
 
-    <!-- About -->
-    <section id="about">
-      <div class="content">
+      <!-- About -->
+      <div class="text-block" style="top: 60vh">
         <h1>About Me</h1>
         <p>
           I’m a self‑taught developer who loves blending creativity with code.
@@ -62,51 +104,45 @@
           <li>💼 3+ years freelancing globally</li>
         </ul>
       </div>
-    </section>
 
-    <!-- Projects -->
-    <section id="projects">
-      <div class="content">
-        <h1>Selected Projects</h1>
+      <!-- Projects -->
+      <div class="text-block" style="top: 100vh">
+        <h1>Projects</h1>
         <ul>
           <li>
             <a href="https://project1.example.com" target="_blank"
               >Project One</a
             >
-            — A responsive portfolio with smooth scroll animations.
+            — Smooth animated portfolio.
           </li>
           <li>
             <a href="https://project2.example.com" target="_blank"
               >Project Two</a
             >
-            — Interactive data viz dashboard built in D3.js.
+            — Data viz dashboard in D3.js.
           </li>
           <li>
             <a href="https://project3.example.com" target="_blank"
               >Project Three</a
             >
-            — E‑commerce prototype with custom UI components.
+            — E‑commerce prototype with custom UI.
           </li>
         </ul>
       </div>
-    </section>
 
-    <!-- Skills -->
-    <section id="skills">
-      <div class="content">
-        <h1>Skills &amp; Tools</h1>
+      <!-- Skills -->
+      <div class="text-block" style="top: 140vh">
+        <h1>Skills & Tools</h1>
         <ul>
           <li>HTML5, CSS3 (Flexbox, Grid, Animations)</li>
           <li>JavaScript (ES6+, React, D3)</li>
-          <li>Version Control: Git &amp; GitHub</li>
+          <li>Version Control: Git & GitHub</li>
           <li>Design: Figma, Sketch, Adobe XD</li>
         </ul>
       </div>
-    </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <div class="content">
+      <!-- Contact -->
+      <div class="text-block" style="top: 180vh">
         <h1>Let’s Connect</h1>
         <p>Have a project in mind or just want to say hi? I’m all ears.</p>
         <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
@@ -117,59 +153,18 @@
           >LinkedIn</a
         >
       </div>
-    </section>
-    <!-- Scroll-height spacer for video scrub -->
-    <div id="set-height"></div>
+    </div>
 
-    <script src="sticky.js"></script>
+    <!-- ScrollyVideo Script -->
+    <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
     <script>
-      enterView({
-        selector: "section",
-        enter: el => el.querySelector(".content").classList.add("entered"),
+      new ScrollyVideo({
+        scrollyVideoContainer: "scrolly-video",
+        src: "jungle.mp4",
+        cover: true,
+        full: true,
+        sticky: true,
       });
-
-      const playbackConst = 800;
-      const setHeight = document.getElementById("set-height");
-      const vid = document.getElementById("v0");
-
-      vid.addEventListener("loadedmetadata", () => {
-        setHeight.style.height =
-          Math.floor(vid.duration) * playbackConst + "px";
-      });
-
-      function scrollPlay() {
-        vid.currentTime = window.pageYOffset / playbackConst;
-        requestAnimationFrame(scrollPlay);
-      }
-      requestAnimationFrame(scrollPlay);
-      // grab references
-      const header = document.querySelector(".site-header");
-      const hero = document.getElementById("hero");
-
-      if (header && hero) {
-        const headerHeight = header.offsetHeight;
-        const heroHeight = hero.offsetHeight;
-
-        window.addEventListener("scroll", () => {
-          // if we've scrolled past heroHeight - headerHeight, show the header
-          if (window.scrollY > heroHeight - headerHeight) {
-            header.classList.add("visible");
-          } else {
-            header.classList.remove("visible");
-          }
-        });
-
-        // also fire once on load in case refresh mid‑page
-        if (window.scrollY > heroHeight - headerHeight) {
-          header.classList.add("visible");
-        }
-      }
-      // scroll scrubbing
-      function scrollPlay() {
-        vid.currentTime = window.pageYOffset / playbackConst;
-        requestAnimationFrame(scrollPlay);
-      }
-      requestAnimationFrame(scrollPlay);
     </script>
   </body>
 </html>
