@@ -165,6 +165,14 @@ ul {
 li::marker {
   color: #c0cc9c;
 }
+
+ul li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s ease;
+}
+
 #navbar {
   position: fixed;
   top: -100px;
@@ -356,7 +364,7 @@ li::marker {
 #mobile-menu-close {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #f2f3ef;
   cursor: pointer;
   margin-bottom: 2rem;
@@ -376,6 +384,41 @@ li::marker {
   text-decoration: none;
   font-weight: 600;
   font-size: 1.125rem;
+}
+
+#mobile-nav .social-links a {
+  font-size: 1.5rem;
+}
+
+/* Tighten up the spacing between menu items */
+#mobile-nav ul li + li {
+  margin-top: 1.5rem; 
+}
+
+/* divider under drawer items */
+.drawer-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 2rem -1rem;
+  width: calc(100% + 2rem);
+}
+
+/* container for the two icons */
+.social-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+/* icon styling */
+.social-links a {
+  font-size: 1.5rem; /* adjust as needed */
+  color: #f2f3ef;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #c8e59f;
 }
 
 /* — mobile breakpoint — */
