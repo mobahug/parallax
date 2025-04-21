@@ -9,16 +9,29 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="main.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <nav id="navbar">
       <div class="nav-inner">
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <img src="profile.jpg" alt="Profile" class="nav-profile" />
+        <button id="playPauseBtn" aria-label="Play/Pause Music">
+          <i id="playPauseIcon" class="fas fa-pause-circle"></i>
+        </button>
       </div>
     </nav>
   </head>
   <body>
+    <div
+      id="player"
+      style="position: fixed; width: 0; height: 0; overflow: hidden"
+    ></div>
+
     <!-- COVER SECTION -->
     <div id="cover">
       <div class="cover-content">
@@ -155,7 +168,7 @@
       });
     </script>
 
-<!-- Falling leafs logic -->
+    <!-- Falling leafs logic -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".leaf").forEach(leaf => {
@@ -170,6 +183,48 @@
           leaf.style.animationDelay = `${Math.random() * 10}s`;
         });
       });
+    </script>
+
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("player", {
+          videoId: "jfKfPfyJRdk",
+          playerVars: {
+            // autoplay: 1,
+            // loop: 1,
+            playlist: "jfKfPfyJRdk",
+            controls: 0,
+            showinfo: 0,
+            mute: 1,
+            enablejsapi: 1,
+          },
+          events: {
+            onReady: onPlayerReady,
+          },
+        });
+      }
+
+      function onPlayerReady(event) {
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const icon = document.getElementById("playPauseIcon");
+
+        playPauseBtn.addEventListener("click", () => {
+          const playerState = player.getPlayerState();
+          if (playerState === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+            icon.classList.remove("fa-pause-circle");
+            icon.classList.add("fa-play-circle");
+          } else {
+            player.playVideo();
+            icon.classList.remove("fa-play-circle");
+            icon.classList.add("fa-pause-circle");
+          }
+        });
+      }
     </script>
   </body>
 </html>
