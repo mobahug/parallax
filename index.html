@@ -13,20 +13,23 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
+  </head>
+  <body>
     <nav id="navbar">
       <div class="nav-inner">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
+        <a href="#about-me">About</a>
+        <a href="#my-projects">Projects</a>
+        <a href="#skills-tools">Skills</a>
         <a href="#contact">Contact</a>
-        <img src="profile.jpg" alt="Profile" class="nav-profile" />
+        <a href="#home"
+          ><img src="profile.jpg" alt="Profile" class="nav-profile"
+        /></a>
+
         <button id="playPauseBtn" aria-label="Play/Pause Music">
           <i id="playPauseIcon" class="fas fa-play-circle"></i>
         </button>
       </div>
     </nav>
-  </head>
-  <body>
     <audio id="background-music" loop preload="auto">
       <source src="music.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
@@ -38,7 +41,9 @@
         <img src="profile.jpg" alt="Profile" class="profile-pic" />
         <h1>Your Name</h1>
         <p>Creative Frontend Developer crafting immersive web experiences</p>
-        <a href="#scrolly-video" class="scroll-hint">↓ Scroll Down</a>
+        <a href="#home" class="scroll-hint"
+          ><i class="fa-solid fa-arrow-down"></i> Scroll Down</a
+        >
       </div>
     </div>
 
@@ -57,84 +62,94 @@
       </div>
 
       <!-- Hero -->
-      <div class="text-block" style="top: 20vh">
-        <h1>
-          Hello, I’m
-          <em style="font-style: normal; color: #c0cc9c">Your Name</em>
-        </h1>
-        <p>
-          Front‑End Developer & UX Explorer crafting immersive digital
-          experiences that blend aesthetics with purpose.
-        </p>
-        <a href="#projects" class="btn">Explore My Work</a>
-      </div>
+      <section id="home">
+        <div class="text-block">
+          <h1>
+            Hello, I’m
+            <em style="font-style: normal; color: #c0cc9c">Your Name</em>
+          </h1>
+          <p>
+            Front‑End Developer & UX Explorer crafting immersive digital
+            experiences that blend aesthetics with purpose.
+          </p>
+          <a href="#projects" class="btn">Explore My Work</a>
+        </div>
+      </section>
 
       <!-- About -->
-      <div class="text-block" style="top: 60vh">
-        <h1>About Me</h1>
-        <p>
-          I’m a curious developer driven by the desire to build elegant, useful,
-          and human-centered interfaces. Nature is my constant inspiration—both
-          in design and in life.
-        </p>
-        <ul>
-          <li>📍 Based in Your City</li>
-          <li>🎓 B.Sc. in Computer Science</li>
-          <li>💼 3+ years of creative freelance work</li>
-        </ul>
-      </div>
+      <section id="about-me">
+        <div class="text-block">
+          <h1>About Me</h1>
+          <p>
+            I’m a curious developer driven by the desire to build elegant,
+            useful, and human-centered interfaces. Nature is my constant
+            inspiration—both in design and in life.
+          </p>
+          <ul>
+            <li>📍 Based in Your City</li>
+            <li>🎓 B.Sc. in Computer Science</li>
+            <li>💼 3+ years of creative freelance work</li>
+          </ul>
+        </div>
+      </section>
 
       <!-- Projects -->
-      <div class="text-block" style="top: 100vh">
-        <h1>Projects</h1>
-        <ul>
-          <li>
-            <a href="https://project1.example.com" target="_blank"
-              >Project One</a
-            >
-            — Smooth animated portfolio.
-          </li>
-          <li>
-            <a href="https://project2.example.com" target="_blank"
-              >Project Two</a
-            >
-            — Data viz dashboard with D3.js.
-          </li>
-          <li>
-            <a href="https://project3.example.com" target="_blank"
-              >Project Three</a
-            >
-            — E‑commerce prototype with custom UI.
-          </li>
-        </ul>
-      </div>
+      <section id="my-projects">
+        <div class="text-block">
+          <h1>Projects</h1>
+          <ul>
+            <li>
+              <a href="https://project1.example.com" target="_blank"
+                >Project One</a
+              >
+              — Smooth animated portfolio.
+            </li>
+            <li>
+              <a href="https://project2.example.com" target="_blank"
+                >Project Two</a
+              >
+              — Data viz dashboard with D3.js.
+            </li>
+            <li>
+              <a href="https://project3.example.com" target="_blank"
+                >Project Three</a
+              >
+              — E‑commerce prototype with custom UI.
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <!-- Skills -->
-      <div class="text-block" style="top: 140vh">
-        <h1>Skills & Tools</h1>
-        <ul>
-          <li>HTML5, CSS3 (Grid, Animations, Flexbox)</li>
-          <li>JavaScript (ES6+, React, D3)</li>
-          <li>Git & GitHub for version control</li>
-          <li>Design Tools: Figma, Sketch, Adobe XD</li>
-        </ul>
-      </div>
+      <section id="skills-tools">
+        <div class="text-block">
+          <h1>Skills & Tools</h1>
+          <ul>
+            <li>HTML5, CSS3 (Grid, Animations, Flexbox)</li>
+            <li>JavaScript (ES6+, React, D3)</li>
+            <li>Git & GitHub for version control</li>
+            <li>Design Tools: Figma, Sketch, Adobe XD</li>
+          </ul>
+        </div>
+      </section>
 
       <!-- Contact -->
-      <div class="text-block" style="top: 180vh">
-        <h1>Let’s Connect</h1>
-        <p>
-          Got a project or want to chat about nature & design? I’d love to hear
-          from you.
-        </p>
-        <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-        <a
-          href="https://linkedin.com/in/yourprofile"
-          class="btn"
-          target="_blank"
-          >LinkedIn</a
-        >
-      </div>
+      <section id="contact">
+        <div class="text-block">
+          <h1>Let’s Connect</h1>
+          <p>
+            Got a project or want to chat about nature & design? I’d love to
+            hear from you.
+          </p>
+          <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+          <a
+            href="https://linkedin.com/in/yourprofile"
+            class="btn"
+            target="_blank"
+            >LinkedIn</a
+          >
+        </div>
+      </section>
     </div>
 
     <!-- Scripts -->
