@@ -268,7 +268,6 @@ li::marker {
   color: #f2f3ef;
   transition: color 0.3s ease;
   padding: 0;
-  margin-left: 1rem;
 }
 
 #playPauseBtn:hover {
