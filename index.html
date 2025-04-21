@@ -33,6 +33,16 @@
     <div class="scrolly-container">
       <div id="scrolly-video"></div>
 
+      <!-- Falling leaf section -->
+      <div id="leaves">
+        <img src="leaf1.png" class="leaf" />
+        <img src="leaf1.png" class="leaf" />
+        <img src="leaf1.png" class="leaf" />
+        <img src="leaf1.png" class="leaf" />
+        <img src="leaf1.png" class="leaf" />
+        <img src="leaf1.png" class="leaf" />
+      </div>
+
       <!-- Hero -->
       <div class="text-block" style="top: 20vh">
         <h1>
@@ -142,6 +152,23 @@
         } else {
           navbar.style.top = "-100px";
         }
+      });
+    </script>
+
+<!-- Falling leafs logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".leaf").forEach(leaf => {
+          // Position the leaf anywhere from 0 to 100vw
+          leaf.style.left = `${Math.random() * 100}vw`;
+
+          // Optional: vary size slightly but stay small
+          const size = 12 + Math.random() * 8; // 12px–20px
+          leaf.style.width = `${size}px`;
+
+          // Add random animation delay
+          leaf.style.animationDelay = `${Math.random() * 10}s`;
+        });
       });
     </script>
   </body>
