@@ -17,10 +17,10 @@
   <body>
     <nav id="navbar">
       <div class="nav-inner">
-        <a href="#about-me">About</a>
-        <a href="#my-projects">Projects</a>
-        <a href="#skills-tools">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#about-me" class="desktop-only">About</a>
+        <a href="#my-projects" class="desktop-only">Projects</a>
+        <a href="#skills-tools" class="desktop-only">Skills</a>
+        <a href="#contact" class="desktop-only">Contact</a>
         <a href="#home"
           ><img src="profile.jpg" alt="Profile" class="nav-profile"
         /></a>
@@ -28,8 +28,27 @@
         <button id="playPauseBtn" aria-label="Play/Pause Music">
           <i id="playPauseIcon" class="fas fa-play-circle"></i>
         </button>
+        <button id="mobile-menu-btn" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
+      <!-- MOBILE NAVIGATION -->
+
+      <div id="mobile-overlay"></div>
+      <aside id="mobile-nav">
+        <button id="mobile-menu-close" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about-me">About</a></li>
+          <li><a href="#my-projects">Projects</a></li>
+          <li><a href="#skills-tools">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </aside>
     </nav>
+
     <audio id="background-music" loop preload="auto">
       <source src="music.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
@@ -221,6 +240,33 @@
             playPauseIcon.classList.add("fa-play-circle");
           }
         });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const closeBtn = document.getElementById("mobile-menu-close");
+        const mobileNav = document.getElementById("mobile-nav");
+        const overlay = document.getElementById("mobile-overlay");
+
+        function openDrawer() {
+          mobileNav.classList.add("open");
+          overlay.classList.add("visible");
+        }
+        function closeDrawer() {
+          mobileNav.classList.remove("open");
+          overlay.classList.remove("visible");
+        }
+
+        menuBtn.addEventListener("click", openDrawer);
+        closeBtn.addEventListener("click", closeDrawer);
+        overlay.addEventListener("click", closeDrawer);
+
+        // close when clicking any link
+        mobileNav
+          .querySelectorAll("a")
+          .forEach(a => a.addEventListener("click", closeDrawer));
       });
     </script>
   </body>

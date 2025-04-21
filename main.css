@@ -307,3 +307,110 @@ li::marker {
     border-radius: 0% !important;
   }
 }
+
+/* — base: hide mobile controls — */
+#mobile-menu-btn,
+#mobile-overlay,
+#mobile-nav {
+  display: none;
+}
+
+/* — overlay behind drawer — */
+#mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 18;
+}
+#mobile-overlay.visible {
+  display: block;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* — the drawer itself — */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100vh;
+  background: rgba(30, 42, 32, 0.98);
+  backdrop-filter: blur(10px);
+  transform: translateX(100%); /* hide off‑screen */
+  transition: transform 0.3s ease;
+  z-index: 21;
+  padding: 2rem 1.5rem;
+}
+
+#mobile-nav.open {
+  transform: translateX(0);
+}
+
+#mobile-menu-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #f2f3ef;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+#mobile-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+#mobile-nav li + li {
+  margin-top: 1.5rem;
+}
+
+#mobile-nav a {
+  color: #f2f3ef;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+/* — mobile breakpoint — */
+@media (max-width: 600px) {
+  /* hide only the desktop links */
+  a.desktop-link {
+    display: none;
+  }
+
+  /* show the hamburger button */
+  #mobile-menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #f2f3ef;
+    margin-left: auto;
+    z-index: 20;
+    cursor: pointer;
+  }
+
+  /* always show your profile icon */
+  .nav-profile {
+    display: flex;
+  }
+
+  /* enable drawer & overlay */
+  #mobile-overlay,
+  #mobile-nav {
+    display: block;
+  }
+  #navbar.menu-open #mobile-menu-toggle {
+    display: none;
+  }
+  .desktop-only {
+    display: none;
+  }
+}
