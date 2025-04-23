@@ -155,6 +155,153 @@
         </div>
       </section>
 
+      <section >
+        <div class="text-block">
+        <div class="qualification section">
+          <h1>Qualification</h1>
+  
+          <div class="qualification__container container">
+            <div class="qualification__tabs">
+              <div
+                class="qualification__button button--flex "
+                data-target="#education"
+              >
+                <i class="fa-solid fa-graduation-cap"></i>
+                Education
+              </div>
+  
+              <div
+                class="qualification__button button--flex qualification__active"
+                data-target="#work"
+              >
+                <i class="fa-solid fa-briefcase"></i>
+                Work
+              </div>
+            </div>
+            <div class="qualification__sections">
+              <!--==================== QUALIFICATION CONTENT 1 ====================-->
+              <div
+                class="qualification__content"
+                data-content
+                id="education"
+              >
+                <!--==================== QUALIFICATION 1 ====================-->
+                <div class="qualification__data">
+                  <div>
+                    <h2 class="qualification__title">
+                      Software Developer
+                    </h2>
+                    <span class="qualification__subtitle"
+                      >Hive Helsinki - Helsinki</span
+                    >
+                    <div class="qualification__calendar">
+                      <i class="fa-solid fa-calendar"></i>
+                      2021 - 2023
+                    </div>
+                  </div>
+                  <div>
+                    <span class="qualification__rounder"></span>
+                    <span class="qualification__line"></span>
+                  </div>
+                </div>
+  
+                <!--==================== QUALIFICATION 2 ====================-->
+                <div class="qualification__data">
+                  <div></div>
+  
+                  <div>
+                    <span class="qualification__rounder"></span>
+                    <span class="qualification__line"></span>
+                  </div>
+  
+                  <div>
+                    <h2 class="qualification__title">
+                      Finnish Language School
+                    </h2>
+                    <span class="qualification__subtitle"
+                      >SataEdu - Rauma</span
+                    >
+                    <div class="qualification__calendar">
+                      <i class="fa-solid fa-calendar"></i>
+                      2016 - 2017
+                    </div>
+                  </div>
+                </div>
+  
+                <!--==================== QUALIFICATION 3 ====================-->
+                <div class="qualification__data">
+                  <div>
+                    <h2 class="qualification__title">
+                      Construction Technician
+                    </h2>
+                    <span class="qualification__subtitle"
+                      >Technical Vocational & High
+                      School - Budapest</span
+                    >
+                    <div class="qualification__calendar">
+                      <i class="fa-solid fa-calendar"></i>
+                      2011 - 2016
+                    </div>
+                  </div>
+                  <div>
+                    <span class="qualification__rounder"></span>
+                    <!-- <span class="qualification__line"></span> -->
+                  </div>
+                </div>
+              </div>
+              <!--==================== QUALIFICATION CONTENT 2 ====================-->
+              <div
+                class="qualification__content qualification__active"
+                data-content
+                id="work"
+              >
+                <!--==================== QUALIFICATION 1 ====================-->
+                <div class="qualification__data">
+                  <div>
+                    <h2 class="qualification__title">
+                      Full Stack Developer
+                    </h2>
+                    <span class="qualification__subtitle"
+                      >Tietoevry - Espoo</span
+                    >
+                    <div class="qualification__calendar">
+                      <i class="fa-solid fa-calendar"></i>
+                      2023 - Present
+                    </div>
+                  </div>
+                  <div>
+                    <span class="qualification__rounder"></span>
+                    <span class="qualification__line"></span>
+                  </div>
+                </div>
+  
+                <!--==================== QUALIFICATION 2 ====================-->
+                <div class="qualification__data">
+                  <div></div>
+  
+                  <div>
+                    <span class="qualification__rounder"></span>
+                  </div>
+  
+                  <div>
+                    <h2 class="qualification__title">
+                      Full Stack Developer
+                    </h2>
+                    <span class="qualification__subtitle"
+                      >Anyhau - Espoo</span
+                    >
+                    <div class="qualification__calendar">
+                      <i class="fa-solid fa-calendar"></i>
+                      2022 - 2023
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+
       <!-- Skills -->
       <section id="skills-tools">
         <div class="text-block">
@@ -285,5 +432,26 @@
           .forEach(a => a.addEventListener("click", closeDrawer));
       });
     </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs     = document.querySelectorAll('.qualification__button');
+        const contents = document.querySelectorAll('[data-content]');
+      
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.target);
+      
+            /* reset everything */
+            tabs.forEach(t => t.classList.remove('qualification__active'));
+            contents.forEach(c => c.classList.remove('qualification__active'));
+      
+            /* activate the clicked tab + its panel */
+            tab.classList.add('qualification__active');
+            target.classList.add('qualification__active');
+          });
+        });
+      });
+      </script>
   </body>
 </html>
