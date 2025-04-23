@@ -17,8 +17,8 @@
   <body>
     <nav id="navbar">
       <div class="nav-inner">
-        <a href="#about-me" class="desktop-only">About</a>
-        <a href="#my-projects" class="desktop-only">Projects</a>
+        <a href="#about" class="desktop-only">About</a>
+        <a href="#projects" class="desktop-only">Projects</a>
         <a href="#skills-tools" class="desktop-only">Skills</a>
         <a href="#contact" class="desktop-only">Contact</a>
         <a href="#home"
@@ -41,8 +41,8 @@
         </button>
         <ul>
           <li><a href="#home">Home</a></li>
-          <li><a href="#about-me">About</a></li>
-          <li><a href="#my-projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#skills-tools">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -75,8 +75,8 @@
     <div id="cover">
       <div class="cover-content">
         <img src="profile.jpg" alt="Profile" class="profile-pic" />
-        <h1>Your Name</h1>
-        <p>Creative Frontend Developer crafting immersive web experiences</p>
+        <h1>Hi, I'm Gabor</h1>
+        <!-- <p>Creative Frontend Developer crafting immersive web experiences</p> -->
         <a href="#home" class="scroll-hint"
           ><i class="fa-solid fa-arrow-down"></i> Scroll Down</a
         >
@@ -113,7 +113,7 @@
       </section>
 
       <!-- About -->
-      <section id="about-me">
+      <section id="about">
         <div class="text-block">
           <h1>About Me</h1>
           <p>
@@ -130,7 +130,7 @@
       </section>
 
       <!-- Projects -->
-      <section id="my-projects">
+      <section id="projects">
         <div class="text-block">
           <h1>Projects</h1>
           <ul>
@@ -512,4 +512,67 @@
       });
     </script>
   </body>
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-top">
+      <!-- ── brand column ── -->
+      <div class="footer-brand">
+        <h2>Gabor<br />Ulenius</h2>
+        <p class="tagline">Full&nbsp;stack&nbsp;developer</p>
+      </div>
+
+      <!-- ── nav column ── -->
+      <nav class="footer-nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="mailto:you@example.com">Contact&nbsp;me</a>
+      </nav>
+
+      <!-- ── social column ── -->
+      <div class="footer-social">
+        <a
+          href="https://linkedin.com/in/yourprofile"
+          aria-label="LinkedIn"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          href="https://github.com/yourusername"
+          aria-label="GitHub"
+          target="_blank"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://instagram.com/yourhandle"
+          aria-label="Instagram"
+          target="_blank"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a
+          href="https://youtube.com/@yourchannel"
+          aria-label="YouTube"
+          target="_blank"
+        >
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2025 Gabor Ulenius. All rights reserved</div>
+    <script>
+      (() => {
+        const footer = document.getElementById("site-footer");
+        const OFFSET = 40;
+        window.addEventListener("scroll", () => {
+          const atBottom =
+            window.scrollY + innerHeight >=
+            document.documentElement.scrollHeight - OFFSET;
+          footer.classList.toggle("show", atBottom);
+        });
+      })();
+    </script>
+  </footer>
 </html>

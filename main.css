@@ -645,3 +645,107 @@ ul li a {
     columns: 1;
   } /* single column on phones */
 }
+
+/* -------------------------------------------------
+    premium footer – matches navbar colour, slides in
+------------------------------------------------- */
+#site-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-light);
+  transform: translateY(100%); /* hidden off-screen */
+  transition: transform 0.6s ease-out;
+  z-index: 8; /* under navbar (z-9) */
+  font-family: "Inter", sans-serif;
+}
+
+/* animate in when .show is toggled by JS */
+#site-footer.show {
+  transform: translateY(0);
+}
+
+/* ─── top grid ─── */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+  align-items: start;
+}
+
+/* brand column */
+.footer-brand h2 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0;
+}
+.footer-brand .tagline {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: rgba(var(--text-light-rgb), 0.8);
+}
+
+/* nav column */
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.footer-nav a {
+  color: var(--text-light);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-nav a:hover {
+  color: var(--accent-hover);
+}
+
+/* social column */
+.footer-social {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+.footer-social a {
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: var(--text-light);
+  transition: color 0.3s;
+}
+.footer-social a:hover {
+  color: var(--accent-hover);
+}
+
+/* ─── bottom line ─── */
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1rem 0 1.5rem;
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 600px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .footer-brand h2 {
+    font-size: 2.25rem;
+  }
+  .footer-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
