@@ -85,8 +85,12 @@
 
     <!-- MAIN SCROLLING CONTENT -->
     <div class="scrolly-container">
-      <div id="scrolly-video"></div>
-
+      <!-- <div id="scrolly-video"></div> -->
+      <div
+        id="scrolly-video"
+        data-src="jungle.mp4"
+        data-poster="jungle-fallback.png"
+      ></div>
       <!-- Falling leaf section -->
       <div id="leaves">
         <img src="leaf1.png" class="leaf" />
@@ -331,6 +335,7 @@
       new ScrollyVideo({
         scrollyVideoContainer: "scrolly-video",
         src: "jungle.mp4",
+        videoProps: { poster: "jungle-fallback.png" },
       });
 
       // Fade out cover on scroll
