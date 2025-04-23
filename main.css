@@ -35,6 +35,8 @@
   --mb-2: 2rem;
 
   --font-medium: 600;
+
+  --nav-h: 70px;
 }
 
 /* =====================================================
@@ -237,6 +239,7 @@ ul li a {
   padding: 1rem 2rem;
   z-index: 9;
   transition: top 1s ease-in-out;
+  height: var(--nav-h);
 }
 
 .nav-inner {
@@ -255,6 +258,7 @@ ul li a {
   font-size: 1rem;
   transition: color 0.3s;
 }
+
 #navbar a:hover {
   color: var(--accent-hover);
 }
@@ -352,7 +356,25 @@ ul li a {
     padding: 0;
   }
   section {
-    padding: var(--mb-2) 0;
+    height: auto; /* overrides the desktop 100vh */
+    scroll-margin-top: var(--nav-h);
+    justify-content: flex-start; /* content starts from the top instead of centre */
+    padding: 4rem 0; /* extra breathing room top & bottom   */
+  }
+
+  .scrolly-container {
+    height: 850vh;
+  }
+
+  /* give the very first section breathing room */
+  .scrolly-container > section:first-of-type {
+    padding-top: calc(
+      var(--nav-h) + 1.5rem
+    ); /* tweak the extra 1.5 rem at will */
+  }
+
+  .text-block {
+    margin: 0 auto 10vh; /* half the desktop gap looks nicer */
   }
 
   .content {
@@ -559,4 +581,67 @@ ul li a {
 }
 .qualification__active[data-content] {
   display: block;
+}
+
+/* =====================================================
+     SKILLS (3 glass cards)
+     ===================================================== */
+.skills-heading {
+  text-align: center;
+  margin-bottom: var(--mb-2);
+  font-size: 2.5rem;
+  color: var(--text-heading);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two equal columns   */
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tools {
+  grid-column: 1 / -1; /* start at col 1, end at last column */
+}
+
+/* make a normal text-block behave nicely *inside* the grid */
+.skill-card {
+  width: 100%; /* override the 700 px in .text-block */
+  margin: 0; /* no auto-centering */
+}
+
+.skills-title {
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-0-25);
+  font-weight: var(--font-medium);
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .tools {
+    grid-column: auto;
+  } /* normal flow again */
+}
+
+/* ---------- Mobile: stack the cards ---------- */
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    width: 100vw;
+  }
+}
+
+/* — split long lists into 2 equal columns — */
+.columns-2 {
+  columns: 2;
+  column-gap: 2rem;
+}
+@media (max-width: 600px) {
+  .columns-2 {
+    columns: 1;
+  } /* single column on phones */
 }
