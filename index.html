@@ -562,17 +562,6 @@
     </div>
 
     <div class="footer-bottom">© 2025 Gabor Ulenius. All rights reserved</div>
-    <script>
-      (() => {
-        const footer = document.getElementById("site-footer");
-        const OFFSET = 80;
-        window.addEventListener("scroll", () => {
-          const atBottom =
-            window.scrollY + innerHeight >=
-            document.documentElement.scrollHeight - OFFSET;
-          footer.classList.toggle("show", atBottom);
-        });
-      })();
-    </script>
+   
   </footer>
 </html>
