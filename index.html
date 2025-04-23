@@ -398,35 +398,53 @@
     </script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+      (() => {
+        const MOBILE_MAX = 600;
+
+        /* grab elements */
         const menuBtn = document.getElementById("mobile-menu-btn");
         const closeBtn = document.getElementById("mobile-menu-close");
         const mobileNav = document.getElementById("mobile-nav");
         const overlay = document.getElementById("mobile-overlay");
 
-        function openDrawer() {
+        if (!menuBtn || !mobileNav) return; /* safeguard */
+
+        const isMobile = () => window.innerWidth <= MOBILE_MAX;
+        const drawerOpen = () => mobileNav.classList.contains("open");
+        const openDrawer = () => {
           mobileNav.classList.add("open");
           overlay.classList.add("visible");
-        }
-        function closeDrawer() {
+        };
+        const closeDrawer = () => {
           mobileNav.classList.remove("open");
           overlay.classList.remove("visible");
-        }
+        };
+
+        /* basic triggers */
         menuBtn.addEventListener("click", openDrawer);
         closeBtn.addEventListener("click", closeDrawer);
         overlay.addEventListener("click", closeDrawer);
         mobileNav
           .querySelectorAll("a")
           .forEach(a => a.addEventListener("click", closeDrawer));
+
+        /* auto-close on scroll */
         window.addEventListener("scroll", () => {
+          if (isMobile() && drawerOpen()) closeDrawer();
+        });
+
+        /* click-/tap-away anywhere outside the drawer & burger */
+        document.addEventListener("pointerdown", evt => {
           if (
-            window.innerWidth <= 600 &&
-            mobileNav.classList.contains("open")
+            isMobile() &&
+            drawerOpen() &&
+            !mobileNav.contains(evt.target) &&
+            !menuBtn.contains(evt.target)
           ) {
             closeDrawer();
           }
         });
-      });
+      })();
     </script>
 
     <script>
